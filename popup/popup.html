@@ -1,0 +1,72 @@
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Export Tab URLs</title>
+	<style>
+		html, body {
+			height: 315px;
+			margin-bottom: 0;
+		}
+		.options, .buttons {
+			display: flex;
+		}
+		.buttons {
+			width: calc(100% + 16px);
+			position: relative;
+			left: -8px;
+		}
+		.options {
+			margin: 15px 0;
+		}
+		.buttons button {
+		}
+		input, button, div {
+			margin: 0;
+		}
+		.options {
+			justify-content: space-between;
+		}
+		h1, h2, h3, h4, h5, h6 {
+			font-weight: 600;
+		}
+		#result {
+			width: 400px;
+			height: 200px;
+			display: block;
+		}
+		input[type="checkbox"] {
+			margin-right: 5px;
+			display: inline-block;
+		}
+		.btn {
+			border: 1px solid #ccc;
+			cursor: pointer;
+			height: 40px;
+			flex: 1;
+			border-right: 0 none;
+		}
+		.btn:hover {
+			background-color: #ddd;
+		}
+		.btn:first-child {
+			border-right: 0 none;
+			border-left: 0 none;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<h1>Export Tab URLs</h1>
+		<textarea id="result"></textarea>
+		<div class="options">
+			<label><input id="include_titles" checked type="checkbox" name="include_titles">Include titles</label>
+			<label><input id="limit_window" type="checkbox" name="limit_window">Limit to current window</label>
+		</div>
+		<div class="buttons">
+			<button id="copyClipboard" class="btn" type="button">Copy to clipboard</button>
+			<button id="exportBtn" class="btn" type="button">Export as file</button>
+		</div>
+	</div>
+	<script src="popup.js"></script>
+</body>
+</html>
