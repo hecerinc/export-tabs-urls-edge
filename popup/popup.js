@@ -24,12 +24,7 @@ const getResult = () => {
 				if (filterval === "") {
 					return true;
 				}
-				// filterval = filterval.toLowerCase();
 				const re = new RegExp(filterval, "gi");
-				// return (
-				// 	t.title.toLowerCase().indexOf(filterval) > -1 ||
-				// 	t.url.toLowerCase().indexOf(filterval) > -1
-				// );
 				return re.test(t.title) || re.test(t.url);
 			})
 			.map((t) => {
