@@ -1,0 +1,16 @@
+{
+	"name": "Export Tab URLs",
+	"version": "0.0.0.1",
+	"manifest_version": 3,
+	"description": "Export your open tab URLs into your clipboard or a text file.",
+	"icons": {
+		"16": "icons/exporturl_16x16.png",
+		"32": "icons/exporturl_32x32.png",
+		"48": "icons/exporturl_48x48.png",
+		"128": "icons/exporturl_128x128.png"
+	},
+	"action": {
+		"default_popup": "popup/popup.html"
+	},
+	"permissions": ["tabs", "clipboardWrite"]
+}
