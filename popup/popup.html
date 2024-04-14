@@ -18,8 +18,6 @@
 		.options {
 			margin: 15px 0;
 		}
-		.buttons button {
-		}
 		input, button, div {
 			margin: 0;
 		}
@@ -52,12 +50,47 @@
 			border-right: 0 none;
 			border-left: 0 none;
 		}
+		.header {
+			display: flex;
+			justify-content: space-between;
+		}
+		.header h1 {
+			margin: 5px 0 12px;
+		}
+		.counter-container .counter {
+			font-size: 18px;
+			color: #707070;
+			position: relative;
+			top: 10px;
+		}
+		.filter-input-container {
+			display: flex;
+			flex-direction: column;
+			margin-bottom: 10px;
+		}
+		.filter-label {
+			font-size: 1rem;
+		}
+		#filterInput {
+			padding: 5px 3px;
+		}
 	</style>
 </head>
 <body>
 	<div>
-		<h1>Export Tab URLs</h1>
-		<textarea id="result"></textarea>
+		<div class="header">
+			<h1>Export Tab URLs</h1>
+			<div class="counter-container">
+				<span class="counter"></span>
+			</div>
+		</div>
+		<section class="main-container">
+			<div class="filter-input-container">
+				<label class="filter-label" for="filterInput"> Filter tabs </label>
+				<input id="filterInput" type="text" name="filterInput" placeholder="Type your filter (supports regex)">
+			</div>
+			<textarea id="result"></textarea>
+		</section>
 		<div class="options">
 			<label><input id="include_titles" checked type="checkbox" name="include_titles">Include titles</label>
 			<label><input id="limit_window" type="checkbox" name="limit_window">Limit to current window</label>

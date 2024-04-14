@@ -1,8 +1,10 @@
 const resultTxtArea = document.querySelector("#result");
+const filterInput = document.querySelector("#filterInput");
 const includeTitlesCheckbox = document.querySelector("#include_titles");
 const limitWindowCheckbox = document.querySelector("#limit_window");
 const copyBtn = document.querySelector("#copyClipboard");
 const exportBtn = document.querySelector("#exportBtn");
+const counterSpan = document.querySelector(".counter-container .counter");
 
 let os;
 chrome.runtime.getPlatformInfo(function (info) {
@@ -15,7 +17,21 @@ const getResult = () => {
 		options.currentWindow = true;
 	}
 	chrome.tabs.query(options, (tabs) => {
+		counterSpan.innerHTML = `${tabs.length} tabs`;
 		resultTxtArea.value = tabs
+			.filter((t) => {
+				let filterval = filterInput.value.trim();
+				if (filterval === "") {
+					return true;
+				}
+				// filterval = filterval.toLowerCase();
+				const re = new RegExp(filterval, "gi");
+				// return (
+				// 	t.title.toLowerCase().indexOf(filterval) > -1 ||
+				// 	t.url.toLowerCase().indexOf(filterval) > -1
+				// );
+				return re.test(t.title) || re.test(t.url);
+			})
 			.map((t) => {
 				if (includeTitlesCheckbox.checked) {
 					// Markdown format for easy pasting
@@ -23,7 +39,7 @@ const getResult = () => {
 				}
 				return t.url;
 			})
-			.join("\n\n");
+			.join("\n");
 	});
 };
 
@@ -69,6 +85,7 @@ getResult();
 
 includeTitlesCheckbox.addEventListener("change", getResult);
 limitWindowCheckbox.addEventListener("change", getResult);
+filterInput.addEventListener("input", getResult);
 exportBtn.addEventListener("click", download);
 copyBtn.addEventListener("click", (e) => {
 	resultTxtArea.select();
